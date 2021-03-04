@@ -4,11 +4,13 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.speech.tts.TextToSpeech
 import android.util.Log
+import android.widget.Button
 import android.widget.TextView
+import java.util.*
 
 class MainActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
 
-    //Variable global, ? indica que la variable puede ser null
+    //Variable global, ? para indicar que puede ser null
     var tts: TextToSpeech? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -16,16 +18,23 @@ class MainActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
         setContentView(R.layout.activity_main)
 
         tts = TextToSpeech(this, this)
+        findViewById<Button>(R.id.btnPlay).setOnClickListener{speak()}
 
-        var message: String = findViewById<TextView>(R.id.TextView).text.toString()
-        Log.d("MyTextView", message)
+
+    }
+
+    private fun speak(){
+        var message: String = findViewById<TextView>(R.id.etMessage).text.toString()
+        // !! indica que la variable no sera null
+        tts!!.speak(message, TextToSpeech.QUEUE_FLUSH, null, "")
     }
 
     override fun onInit(status: Int) {
         if (status == TextToSpeech.SUCCESS) {
-            findViewById<TextView>(R.id.TextView).text = "Listo!"
-        }else{
-            findViewById<TextView>(R.id.TextView).text = "No disponible!"
+            findViewById<TextView>(R.id.tvStatus).text = "The library is ready!"
+            tts!!.setLanguage(Locale.US)
+        }else {
+            findViewById<TextView>(R.id.tvStatus).text = "No disponible!"
         }
     }
 }
