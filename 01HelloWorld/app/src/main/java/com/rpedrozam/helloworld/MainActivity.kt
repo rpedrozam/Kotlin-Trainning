@@ -25,6 +25,10 @@ class MainActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
 
     private fun speak(){
         var message: String = findViewById<TextView>(R.id.etMessage).text.toString()
+
+        if (message.isEmpty()) {
+            message = "No Text"
+        }
         // !! indica que la variable no sera null
         tts!!.speak(message, TextToSpeech.QUEUE_FLUSH, null, "")
     }
@@ -36,5 +40,14 @@ class MainActivity : AppCompatActivity(), TextToSpeech.OnInitListener {
         }else {
             findViewById<TextView>(R.id.tvStatus).text = "No disponible!"
         }
+    }
+
+    override fun onDestroy() {
+        if (tts != null) {
+            tts!!.stop()
+            tts!!.shutdown()
+        }
+        super.onDestroy()
+
     }
 }
