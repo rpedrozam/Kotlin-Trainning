@@ -2,6 +2,7 @@ package com.rpedrozam.poo
 
 import com.rpedrozam.poo.classpack.Phone
 import com.rpedrozam.poo.classpack.Smartphone
+import com.rpedrozam.poo.classpack.User
 
 fun main(){
 
@@ -11,7 +12,7 @@ fun main(){
     phone.showNumber()
     println(phone.number)
 
-    println("\n=== Herencia ===\n")
+    println("\n=== Inheritance ===\n")
     val smartphone: Smartphone = Smartphone(3164568532, true)
     smartphone.call()
     smartphone.showNumber()
@@ -20,8 +21,9 @@ fun main(){
     smartphone2.call()
     smartphone2.showNumber()
 
-    println("\n=== Override ===\n")
-
-
+    println("\n=== Data Class ===\n")
+    val myUser = User (0, "Andres", "Perez", 0)
+    println(myUser.component3())
+    println(myUser)
 
 }
