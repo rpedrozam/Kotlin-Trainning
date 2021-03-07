@@ -1,5 +1,6 @@
 package com.rpedrozam.poo
 
+import com.rpedrozam.poo.classpack.Group
 import com.rpedrozam.poo.classpack.Phone
 import com.rpedrozam.poo.classpack.Smartphone
 import com.rpedrozam.poo.classpack.User
@@ -25,5 +26,10 @@ fun main(){
     val myUser = User (0, "Andres", "Perez", 0)
     println(myUser.component3())
     println(myUser)
+
+    println("\n=== Enum ===\n")
+    val myUserEnum = myUser.copy (id = 1, name = "Carlos",  group = Group.FAMILY.ordinal)
+    println(myUserEnum.component4())
+    println(myUserEnum)
 
 }
