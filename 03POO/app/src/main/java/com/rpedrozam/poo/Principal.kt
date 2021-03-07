@@ -27,9 +27,24 @@ fun main(){
     println(myUser.component3())
     println(myUser)
 
+
     println("\n=== Enum ===\n")
     val myUserEnum = myUser.copy (id = 1, name = "Carlos",  group = Group.FAMILY.ordinal)
     println(myUserEnum.component4())
     println(myUserEnum)
+
+    println("\n=== Scope functions ===\n")
+    with(smartphone){
+        println("What is the number? $number")
+        call()
+    }
+
+    val myFriend = myUser.copy(id = 4, lastName = "Badel", group = Group.FRIEND.ordinal)
+    println(myFriend)
+    myFriend.apply {
+        group = Group.WORK.ordinal
+        name = "Esteban"
+    }
+    println(myFriend)
 
 }
